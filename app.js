@@ -36,14 +36,7 @@ window.onerror = function(message, source, lineno, colno, error) {
     } catch(e) {}
 };
 // Full BRES list (23 accounts remaining)
-const bresAccounts = [
-    "@beatrizalvep2", "@dzmitry.saksonau", "@lariimba1", "@joonlyvibe",
-    "@jamoremiller", "@waveanlyy", "@ariana.mells", "@exclusive_tunes6",
-    "@futurehits59", "@fanlafana", "@funimbfaun", "@imbalarifun",
-    "@leshaplita", "@genius", "@imaginedragons", "@coldplay",
-    "@onedirection", "@gorillaz", "@queen", "@billboard",
-    "@linkinpark", "@brunomars", "@charlieputh"
-].join(" ");
+const bresAccounts = ""; // Loaded dynamically via private cloud
 
 // Elements Cache
 const timeEl = document.getElementById("current-time");
