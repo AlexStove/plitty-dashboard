@@ -815,5 +815,303 @@
     "anomalies": [
       "❌ Публичный Туннель (https://registration-strengths-departure-household.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
     ]
+  },
+  {
+    "timestamp": "2026-09-01 18:31:09",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://0e112b6b01ed3c.lhr.life",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "33 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 18:40:20",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://0e112b6b01ed3c.lhr.life",
+        "info": "HTTP Error 503: Service Unavailable"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "33 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://0e112b6b01ed3c.lhr.life): HTTP Error 503: Service Unavailable"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 19:31:12",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 19:40:23",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 20:31:15",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 20:40:26",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 21:31:18",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 21:40:29",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 22:31:21",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 22:40:32",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://alexstove.github.io/plitty-dashboard",
+        "info": "HTTP Error 404: Not Found"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://alexstove.github.io/plitty-dashboard): HTTP Error 404: Not Found"
+    ]
   }
 ]
