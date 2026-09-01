@@ -679,9 +679,27 @@ def telegram_polling_loop():
                 if text in ["🛡️ Самолечение", "/heal"]:
                     text = "самолечение"
 
+                if any(k in text.lower() for k in ["📸 фотосессия", "фотосессия", "/photo", "бикини", "спальня", "душ", "киберпанк", "горничная"]):
+                    # Обработка фотосессий Плитти
+                    sys.path.insert(0, r"C:\Users\a.feoktistov\.gemini\antigravity-ide\brain\177c2099-6aa9-4f4f-bac3-ae6bcc059efe\scratch")
+                    import plitty_image_studio
+                    preset = "bikini"
+                    if "спальн" in text.lower(): preset = "bedroom"
+                    elif "душ" in text.lower(): preset = "shower"
+                    elif "кибер" in text.lower(): preset = "cyberpunk"
+                    elif "горнич" in text.lower() or "maid" in text.lower(): preset = "maid"
+                    
+                    with TypingHeartbeat(chat_id, action="upload_photo"):
+                        p_path, p_title = plitty_image_studio.generate_photo(preset)
+                        if p_path:
+                            plitty_image_studio.send_photo_to_telegram(p_path, caption=f"📸 <b>[Фотосессия: {p_title}]</b> 😼✨\n\nНравится образ, Алексей?", chat_id=chat_id)
+                        else:
+                            send_message(f"⚠️ Ошибка генерации: {p_title}", chat_id=chat_id)
+                    continue
+
                 if text in ["🎨 Сделать арт", "/draw", "арт"]:
                     send_message(
-                        "🎨 Напиши мне: <i>«Нарисуй [любой объект или сцену]»</i> (например: <i>«Нарисуй киберпанк кота в капюшоне»</i>), и я сразу сгенерирую арт! 😼",
+                        "🎨 Напиши мне: <i>«Нарисуй [любой объект или сцену]»</i> (например: <i>«Нарисуй киберпанк кота в капюшоне»</i>) или выбери тему фотосессии: <b>бикини, спальня, душ, киберпанк, горничная</b>! 😼📸",
                         chat_id=chat_id
                     )
                     continue
