@@ -1,0 +1,48 @@
+# Build dependencies
+setuptools>=69.0.0
+wheel>=0.42.0
+
+# Telegram bot
+python-telegram-bot==20.7
+
+# Audio analysis
+librosa==0.10.1
+soundfile==0.12.1
+numpy==1.26.4
+
+# Speech-to-text for lyrics timing (faster-whisper used in code)
+faster-whisper>=0.10.0
+
+# HTTP requests (async)
+aiohttp==3.9.3
+aiofiles==23.2.1
+
+# Config
+PyYAML==6.0.1
+python-dotenv==1.0.1
+
+# Claude API (optional, for smart query generation)
+anthropic>=0.39.0
+
+# Track download: Spotify metadata (spotipy), YouTube (yt-dlp[default] for EJS).
+# Deezer uses the `streamrip` CLI via subprocess; its pinned deps (aiofiles<0.8,
+# Pillow<10) conflict with this app, so it is installed in an isolated venv in the
+# Dockerfile — NOT here.
+spotipy>=2.23.0
+spotdl>=4.5.0
+yt-dlp[default]>=2025.4.0
+tomlkit>=0.12.0
+
+# Image rendering for lyrics animations
+Pillow>=10.0.0
+
+# API server
+fastapi>=0.103.0
+uvicorn>=0.23.0
+python-multipart>=0.0.6
+
+# S3/MinIO storage
+minio>=7.2.0
+
+# Tests
+pytest>=8.0.0
