@@ -1,0 +1,1286 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "agentMUSIC API",
+    "description": "API для загрузки музыки, извлечения припевов и генерации коротких видео.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "Проверка"
+        ],
+        "summary": "Проверить состояние сервиса",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs": {
+      "get": {
+        "tags": [
+          "Задачи"
+        ],
+        "summary": "Получить список задач",
+        "operationId": "list_jobs_api_jobs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{job_id}": {
+      "get": {
+        "tags": [
+          "Задачи"
+        ],
+        "summary": "Получить статус задачи",
+        "operationId": "get_job_api_jobs__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{job_id}/stop": {
+      "post": {
+        "tags": [
+          "Задачи"
+        ],
+        "summary": "Остановить задачу",
+        "operationId": "stop_job_api_jobs__job_id__stop_post",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks/minio": {
+      "get": {
+        "tags": [
+          "MinIO"
+        ],
+        "summary": "Получить список треков из MinIO",
+        "description": "Список треков из настроенного MinIO tracks bucket.",
+        "operationId": "list_minio_tracks_api_tracks_minio_get",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks/minio/import": {
+      "post": {
+        "tags": [
+          "MinIO"
+        ],
+        "summary": "Импортировать один трек из MinIO",
+        "description": "Импортирует трек из MinIO, транскрибирует и извлекает припевы.",
+        "operationId": "import_minio_track_api_tracks_minio_import_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MinioImportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks/minio/import-batch": {
+      "post": {
+        "tags": [
+          "MinIO"
+        ],
+        "summary": "Импортировать несколько треков из MinIO",
+        "description": "Массовый импорт + обработка треков из MinIO.",
+        "operationId": "import_minio_batch_api_tracks_minio_import_batch_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MinioBatchImportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks": {
+      "get": {
+        "tags": [
+          "Треки"
+        ],
+        "summary": "Получить список треков",
+        "description": "Список всех треков всех пользователей.",
+        "operationId": "list_tracks_api_tracks_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks/upload": {
+      "post": {
+        "tags": [
+          "Треки"
+        ],
+        "summary": "Загрузить аудиофайл",
+        "description": "Загрузка аудиофайла через API.",
+        "operationId": "upload_track_api_tracks_upload_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_track_api_tracks_upload_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks/spotify": {
+      "post": {
+        "tags": [
+          "Треки"
+        ],
+        "summary": "Импортировать треки из Spotify",
+        "description": "Async-загрузка Spotify — возвращает job_id сразу, клиент опрашивает /job/{id}.",
+        "operationId": "spotify_download_start_api_tracks_spotify_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpotifyImportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tracks/{track_id}/process": {
+      "post": {
+        "tags": [
+          "Треки"
+        ],
+        "summary": "Обработать трек и извлечь припевы",
+        "description": "Транскрипция + извлечение припевов для трека.",
+        "operationId": "process_track_api_tracks__track_id__process_post",
+        "parameters": [
+          {
+            "name": "track_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Track Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/choruses": {
+      "get": {
+        "tags": [
+          "Припевы"
+        ],
+        "summary": "Получить список припевов",
+        "description": "Список припевов с артистом и title связанного трека (для UI).",
+        "operationId": "list_choruses_api_choruses_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/choruses/{chorus_id}/audio": {
+      "get": {
+        "tags": [
+          "Припевы"
+        ],
+        "summary": "Скачать аудио припева",
+        "description": "Аудиофайл припева для прослушивания.",
+        "operationId": "get_chorus_audio_api_choruses__chorus_id__audio_get",
+        "parameters": [
+          {
+            "name": "chorus_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Chorus Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/generate": {
+      "post": {
+        "tags": [
+          "Генерация"
+        ],
+        "summary": "Запустить генерацию видео",
+        "description": "Создаёт задачу генерации.",
+        "operationId": "generate_api_generate_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/GenerateRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/videos": {
+      "post": {
+        "tags": [
+          "Генерация"
+        ],
+        "summary": "Принять команду платформы: один трек → одно видео",
+        "description": "Одношаговый submit для AF video-generator адаптера.\n\nКонтракт: ровно один ассет на command_id (идемпотентно). Источник трека —\nодин из minio_key | spotify_url | track_id | prompt; импорт, транскрипция\nи рендер выполняются внутри задачи, статус — GET /api/jobs/{job_id}.",
+        "operationId": "submit_video_api_v1_videos_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitVideoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/footage/prewarm": {
+      "post": {
+        "tags": [
+          "Генерация"
+        ],
+        "summary": "Прогреть кэш футажей (Pixabay/Pexels)",
+        "description": "Скачивает футажи в кэш заранее, чтобы рендер не ждал их в задаче.",
+        "operationId": "footage_prewarm_api_footage_prewarm_post",
+        "parameters": [
+          {
+            "name": "orientation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "portrait",
+                "landscape"
+              ],
+              "type": "string",
+              "default": "portrait",
+              "title": "Orientation"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/videos": {
+      "get": {
+        "tags": [
+          "Видео"
+        ],
+        "summary": "Получить список готовых видео",
+        "description": "Список всех готовых видео всех пользователей.",
+        "operationId": "list_videos_api_videos_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/videos/{video_id}": {
+      "get": {
+        "tags": [
+          "Видео"
+        ],
+        "summary": "Получить метаданные видео",
+        "description": "Метаданные одного видео.",
+        "operationId": "get_video_api_videos__video_id__get",
+        "parameters": [
+          {
+            "name": "video_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Video Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/videos/{video_id}/file": {
+      "get": {
+        "tags": [
+          "Видео"
+        ],
+        "summary": "Скачать видеофайл",
+        "description": "Скачивание видеофайла.",
+        "operationId": "get_video_file_api_videos__video_id__file_get",
+        "parameters": [
+          {
+            "name": "video_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Video Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/stats": {
+      "get": {
+        "tags": [
+          "Проверка"
+        ],
+        "summary": "Получить статистику сервиса",
+        "operationId": "stats_api_stats_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_upload_track_api_tracks_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_track_api_tracks_upload_post"
+      },
+      "GenerateRequest": {
+        "properties": {
+          "chorus_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chorus Id"
+          },
+          "scenario": {
+            "type": "string",
+            "enum": [
+              "karaoke",
+              "slideshow",
+              "track_promo",
+              "cover_alive",
+              "pov_spotify"
+            ],
+            "title": "Scenario",
+            "default": "karaoke"
+          },
+          "bg_type": {
+            "type": "string",
+            "enum": [
+              "footage",
+              "animated"
+            ],
+            "title": "Bg Type",
+            "default": "footage"
+          },
+          "orientation": {
+            "type": "string",
+            "enum": [
+              "portrait",
+              "landscape"
+            ],
+            "title": "Orientation",
+            "default": "portrait"
+          },
+          "videos_per_account": {
+            "type": "integer",
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Videos Per Account",
+            "default": 1
+          },
+          "topic": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Topic"
+          }
+        },
+        "type": "object",
+        "title": "GenerateRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MinioBatchImportRequest": {
+        "properties": {
+          "keys": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Keys"
+          }
+        },
+        "type": "object",
+        "required": [
+          "keys"
+        ],
+        "title": "MinioBatchImportRequest"
+      },
+      "MinioImportRequest": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key"
+        ],
+        "title": "MinioImportRequest"
+      },
+      "SpotifyImportRequest": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Url"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "deezer",
+              "youtube"
+            ],
+            "title": "Source",
+            "default": "auto"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "SpotifyImportRequest"
+      },
+      "SubmitVideoRequest": {
+        "properties": {
+          "minio_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1024,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minio Key"
+          },
+          "spotify_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spotify Url"
+          },
+          "track_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Track Id"
+          },
+          "prompt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt"
+          },
+          "command_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Command Id"
+          },
+          "scenario": {
+            "type": "string",
+            "enum": [
+              "karaoke",
+              "slideshow",
+              "track_promo",
+              "cover_alive",
+              "pov_spotify"
+            ],
+            "title": "Scenario",
+            "default": "karaoke"
+          },
+          "bg_type": {
+            "type": "string",
+            "enum": [
+              "footage",
+              "animated"
+            ],
+            "title": "Bg Type",
+            "default": "animated"
+          },
+          "aspect": {
+            "type": "string",
+            "enum": [
+              "portrait",
+              "landscape"
+            ],
+            "title": "Aspect",
+            "default": "portrait"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "default": 1
+          },
+          "project": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Project"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type"
+          },
+          "allowed_platforms": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allowed Platforms"
+          },
+          "lang": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lang"
+          }
+        },
+        "type": "object",
+        "required": [
+          "command_id"
+        ],
+        "title": "SubmitVideoRequest",
+        "description": "One-shot generation order from the AF platform adapter.\n\nContract: one asset per command. Exactly one track source must be given;\n``count`` other than 1 is rejected — batching lives on legacy /api/generate,\nthe platform sends N commands for N videos."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Проверка",
+      "description": "Проверка состояния сервиса и быстрые операционные метрики."
+    },
+    {
+      "name": "Задачи",
+      "description": "Просмотр, контроль и остановка фоновых задач генерации."
+    },
+    {
+      "name": "Треки",
+      "description": "Загрузка, импорт и обработка музыкальных треков."
+    },
+    {
+      "name": "MinIO",
+      "description": "Импорт аудиотреков из S3/MinIO-хранилища."
+    },
+    {
+      "name": "Припевы",
+      "description": "Список, метаданные и аудио извлечённых припевов."
+    },
+    {
+      "name": "Генерация",
+      "description": "Постановка задач на создание коротких музыкальных видео."
+    },
+    {
+      "name": "Видео",
+      "description": "Просмотр готовых видео, метаданных и файлов для скачивания."
+    }
+  ]
+}
