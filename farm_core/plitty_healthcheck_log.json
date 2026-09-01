@@ -1,0 +1,819 @@
+[
+  {
+    "timestamp": "2026-08-28 11:21:38",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-08-28 12:00:03",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-08-28 12:22:13",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-08-28 14:00:09",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-08-28 15:00:11",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-28 15:00:56",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-08-28 17:01:44",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-28 18:00:04",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-28 18:18:14",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "30 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-28 19:00:04",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-31 11:08:07",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>",
+      "❌ Публичный Туннель (https://gentle-upload-sheer-proteins.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-31 12:08:22",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>",
+      "❌ Публичный Туннель (https://gentle-upload-sheer-proteins.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-31 13:08:40",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>",
+      "❌ Публичный Туннель (https://gentle-upload-sheer-proteins.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  },
+  {
+    "timestamp": "2026-08-31 14:08:56",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>",
+      "❌ Публичный Туннель (https://gentle-upload-sheer-proteins.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 11:20:00",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://gentle-upload-sheer-proteins.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>",
+      "❌ Публичный Туннель (https://gentle-upload-sheer-proteins.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 11:32:44",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": false,
+        "info": "<urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ SnipPlit Studio (:8000): <urlopen error [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение>"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 12:22:35",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 12:32:49",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 13:00:02",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 13:32:52",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 14:00:02",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 14:32:54",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 15:00:06",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "33 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 15:32:57",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 16:00:07",
+    "is_all_healthy": true,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": true,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP 200"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "32 устройств"
+      }
+    },
+    "anomalies": []
+  },
+  {
+    "timestamp": "2026-09-01 17:00:02",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "HTTP Error 530: <none>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "33 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://registration-strengths-departure-household.trycloudflare.com): HTTP Error 530: <none>"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 17:30:56",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "33 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://registration-strengths-departure-household.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  },
+  {
+    "timestamp": "2026-09-01 17:40:07",
+    "is_all_healthy": false,
+    "results": {
+      "telegram_bot_api": {
+        "ok": true,
+        "info": "@SnipPlit_bot (OK)"
+      },
+      "port_5000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "port_8000": {
+        "ok": true,
+        "info": "HTTP 200"
+      },
+      "public_tunnel": {
+        "ok": false,
+        "url": "https://registration-strengths-departure-household.trycloudflare.com",
+        "info": "<urlopen error [Errno 11001] getaddrinfo failed>"
+      },
+      "firebase_devices": {
+        "ok": true,
+        "info": "33 устройств"
+      }
+    },
+    "anomalies": [
+      "❌ Публичный Туннель (https://registration-strengths-departure-household.trycloudflare.com): <urlopen error [Errno 11001] getaddrinfo failed>"
+    ]
+  }
+]
