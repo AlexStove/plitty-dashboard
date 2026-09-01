@@ -1,0 +1,22 @@
+{
+  "name": "Plitty",
+  "short_name": "Plitty",
+  "description": "Панель управления фермой аккаунтов TikTok",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#121214",
+  "theme-color": "#121214",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
