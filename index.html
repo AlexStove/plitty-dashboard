@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Plitty Control</title>
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        try {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
+            }
+        } catch(e) { console.error('TG init error:', e); }
+    </script>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- PWA Web App Manifest and Theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f4f4f7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="style.css?v=20260901_final">
+    
+    <!-- Firebase SDK (Compatibility version for easy CDN loading) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+        <style id="force-stream-ui-fix">
+        #stream-options-group.hidden { display: none !important; }
+        .stream-options-card.hidden { display: none !important; }
+        .hidden { display: none !important; }
+        /* Force Applied Stream Layout & Crisp High-Contrast Presets */
+        .stream-options-card {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 16px !important;
+            padding: 16px !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+            overflow: hidden !important;
+        }
+
+        .stream-duration-container,
+        .stream-mode-container {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 8px !important;
+            background: #f8fafc !important;
+            padding: 12px 14px !important;
+            border-radius: 14px !important;
+            border: 1px solid #e2e8f0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .stream-field-label {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #475569 !important;
+            letter-spacing: 0.2px !important;
+        }
+
+        .stream-duration-pills,
+        .stream-mode-pills {
+            display: flex !important;
+            gap: 6px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .dur-pill {
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            text-align: center !important;
+            background: #ffffff !important;
+            color: #1e293b !important;
+            border: 1.5px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            padding: 9px 0 !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+            cursor: pointer !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .dur-pill.active {
+            background: linear-gradient(135deg, #ff2d55, #e11d48) !important;
+            color: #ffffff !important;
+            border-color: #e11d48 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35) !important;
+        }
+
+        .mode-pill {
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            background: #ffffff !important;
+            color: #1e293b !important;
+            border: 1.5px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            padding: 10px 2px !important;
+            font-size: 12px !important;
+            font-weight: 800 !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            user-select: none !important;
+        }
+
+        .mode-pill:hover {
+            background: #f1f5f9 !important;
+            border-color: #94a3b8 !important;
+        }
+
+        /* 🤫 Тихий (Stealth) */
+        .mode-pill[data-mode="stealth"].active {
+            background: linear-gradient(135deg, #334155, #0f172a) !important;
+            color: #ffffff !important;
+            border-color: #0f172a !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.45) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* 🌿 Органик (Organic) - Четкий изумрудный контраст */
+        .mode-pill[data-mode="organic"].active {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+            color: #ffffff !important;
+            border-color: #047857 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.45) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* 🔥 Рейд (Raid) - Сочный огненный контраст */
+        .mode-pill[data-mode="raid"].active {
+            background: linear-gradient(135deg, #ea580c, #c2410c) !important;
+            color: #ffffff !important;
+            border-color: #c2410c !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(194, 65, 12, 0.45) !important;
+            transform: translateY(-1px) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- PWA Loader Removed for Instant Load -->
+
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-left">
+                <span class="logo">Plitty</span>
+                <span class="version">v2.0</span>
+            </div>
+            <div class="header-right">
+                <div id="current-time" class="time-display">00:00:00</div>
+            </div>
+        </header>
+
+        <!-- TELEMETRY / SUMMARY BAR -->
+        <section class="telemetry-bar card">
+            <div class="tel-item">
+                <span class="tel-label">ФЕРМА</span>
+                <span id="devices-count" class="tel-val">0 📱</span>
+            </div>
+            <div class="tel-divider"></div>
+            <div class="tel-item">
+                <span class="tel-label">СТАТУС</span>
+                <span id="status-badge" class="status-badge badge-idle">СВОБОДЕН</span>
+            </div>
+        </section>
+
+        <!-- TIMER & PROGRESS BAR (Visible only during active runs) -->
+        <section id="run-progress-card" class="card progress-card hidden">
+            <div class="progress-info">
+                <div class="timer-group">
+                    <span class="tel-label">В РАБОТЕ</span>
+                    <span id="run-timer" class="timer-val">00:00</span>
+                </div>
+                <div class="etc-group">
+                    <span class="tel-label">ОКОНЧАНИЕ (ПРОГНОЗ)</span>
+                    <span id="etc-val" class="etc-val">--:--</span>
+                </div>
+            </div>
+            
+            <div class="progress-bar-container">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="progress-labels">
+                <span id="progress-percentage">0%</span>
+                <span id="progress-circle" class="hidden">Круг: <span id="circle-num">1</span>/5</span>
+            </div>
+        </section>
+
+        <!-- CONTROL PANEL -->
+        <main class="control-panel card">
+            <!-- Animated Mascot Easter Egg Container -->
+            <div id="mascot-container" class="mascot-sitting">
+                <div class="speech-bubble">Plitty готова!</div>
+                <div class="cigarette-smoke">
+                    <div class="smoke-puff p1"></div>
+                    <div class="smoke-puff p2"></div>
+                    <div class="smoke-puff p3"></div>
+                </div>
+                <div class="cigar"></div>
+                <img id="mascot-img" src="catgirl.png" alt="Mascot">
+            </div>
+            <h2 class="section-title">Управление фермой</h2>
+            
+            <!-- Script Selector Grid -->
+            <div class="script-selector">
+                <button type="button" class="script-btn active" data-script="warming">
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Прогрев</span>
+                </button>
+                <button type="button" class="script-btn" data-script="boost">
+                    <span class="btn-icon">📈</span>
+                    <span class="btn-text">Накрутка</span>
+                </button>
+                <button type="button" class="script-btn" data-script="night_boost">
+                    <span class="btn-icon">🌙</span>
+                    <span class="btn-text">Ночь</span>
+                </button>
+                <button type="button" class="script-btn" data-script="live_stream">
+                    <span class="btn-icon">🔴</span>
+                    <span class="btn-text">Стрим</span>
+                </button>
+            </div>
+
+            <!-- Live Stream Options (Hidden by default) -->
+                        <!-- Live Stream Options (Ultra Polished) -->
+            <div id="stream-options-group" class="stream-options-card hidden">
+                <div class="stream-platform-toggle">
+                    <button type="button" id="btn-stream-tiktok" class="platform-btn active tiktok">🎵 TikTok</button>
+                    <button type="button" id="btn-stream-kick" class="platform-btn kick">🟢 Kick</button>
+                    <button type="button" id="btn-stream-twitch" class="platform-btn twitch">🟣 Twitch</button>
+                </div>
+                
+                <div class="stream-field-group">
+                    <label for="streamer-username" class="stream-field-label">Никнейм стримера:</label>
+                    <input type="text" id="streamer-username" class="stream-input-field" placeholder="@dava или имя стримера" />
+                </div>
+
+                <div class="stream-duration-container">
+                    <span class="stream-field-label">Длительность онлайна:</span>
+                    <div class="stream-duration-pills" id="stream-duration-pills">
+                        <button type="button" class="dur-pill active" data-dur="5">5м</button>
+                        <button type="button" class="dur-pill" data-dur="10">10м</button>
+                        <button type="button" class="dur-pill" data-dur="15">15м</button>
+                        <button type="button" class="dur-pill" data-dur="20">20м</button>
+                    </div>
+                </div>
+
+                <div class="stream-mode-container">
+                    <span class="stream-field-label">Режим активности чата:</span>
+                    <div class="stream-mode-pills" id="stream-mode-pills">
+                        <button type="button" class="mode-pill" data-mode="stealth" title="0 комментариев, только накрутка онлайна и просмотр">🤫 Тихий</button>
+                        <button type="button" class="mode-pill active" data-mode="organic" title="Умное распределение: 80% молчат, 20% пишут">🌿 Органик</button>
+                        <button type="button" class="mode-pill" data-mode="raid" title="Активный рейд чата: до 10 тел - 100% активности">🔥 Рейд</button>
+                    </div>
+                </div>
+
+                <div class="stream-checkboxes-row">
+                    <label id="card-stream-likes" class="stream-check-card">
+                        <input type="checkbox" id="check-stream-likes" checked />
+                        <span>💖 Лайки (сердечки)</span>
+                    </label>
+                    <label class="stream-check-card">
+                        <input type="checkbox" id="check-stream-comments" checked />
+                        <span>💬 Комменты в чат</span>
+                    </label>
+                </div>
+            </div>
+
+
+
+            <!-- Target Accounts Editor (Hidden for Warming) -->
+            <div id="accounts-editor-group" class="accounts-editor-group hidden">
+                <div class="editor-header">
+                    <label for="target-accounts">Список аккаунтов (через пробел/строку):</label>
+                    <button type="button" id="btn-insert-bres" class="action-link">📋 BRES список</button>
+                </div>
+                <textarea id="target-accounts" placeholder="@maryysilv @andreopereleo ..." rows="4"></textarea>
+            </div>
+
+            <!-- Action Button -->
+            <button type="button" id="btn-action" class="btn-action start-btn">
+                ЗАПУСТИТЬ
+            </button>
+        </main>
+
+        <!-- DEVICES TELEMETRY GRID -->
+        <section class="card devices-card">
+            <div class="devices-header">
+                <h2 class="section-title">Состояние телефонов</h2>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button type="button" id="btn-check-devices" style="background: rgba(255, 45, 85, 0.1); color: var(--pink-dark); border: 1px solid rgba(255, 45, 85, 0.2); border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; transition: background 0.2s;">🔄 Проверить состояние</button>
+                    <span class="badge-mini" id="active-devices-badge">0 активных</span>
+                </div>
+            </div>
+            <div id="devices-grid" class="devices-grid">
+                <!-- Dynamic device items will be loaded here -->
+                <div class="no-devices">Нет активных устройств</div>
+            </div>
+        </section>
+
+        <!-- Show Logs Button -->
+        <button type="button" id="btn-show-logs" class="btn-show-logs">
+            🖥️ ОТКРЫТЬ ЛОГ КОНСОЛИ
+        </button>
+
+    </div>
+
+    <!-- Console Logs Modal Overlay -->
+    <div id="logs-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <span class="modal-title">🖥️ Живой лог консоли</span>
+                <div class="modal-header-actions">
+                    <button type="button" id="btn-copy-log" class="btn-copy">Копировать</button>
+                    <button type="button" id="btn-close-logs" class="btn-close">❌</button>
+                </div>
+            </div>
+            <div id="terminal-content" class="terminal-content">
+                <div class="log-line system">Подключение к облаку Firebase...</div>
+            </div>
+        </div>
+    </div>
+    <!-- Report Modal Overlay -->
+    <div id="report-modal" class="modal-overlay hidden">
+        <div class="modal-card report-card">
+            <div class="modal-header">
+                <span class="modal-title">📋 ОТЧЕТ О РАБОТЕ</span>
+            </div>
+            <div class="report-content">
+                <div class="report-row">
+                    <span class="report-label">Скрипт:</span>
+                    <span id="report-script" class="report-value">-</span>
+                </div>
+                <div class="report-row">
+                    <span class="report-label">Статус:</span>
+                    <span id="report-status" class="report-value">-</span>
+                </div>
+                <div class="report-row">
+                    <span class="report-label">Время работы:</span>
+                    <span id="report-duration" class="report-value">-</span>
+                </div>
+                <div class="report-row">
+                    <span class="report-label">Выполнено кругов:</span>
+                    <span id="report-circles" class="report-value">-</span>
+                </div>
+                <div class="report-row">
+                    <span class="report-label">Телефонов работало:</span>
+                    <span id="report-devices" class="report-value">-</span>
+                </div>
+                <div class="report-row" id="report-row-comments" style="display: none;">
+                    <span class="report-label">Комментарии:</span>
+                    <span id="report-comments" class="report-value">-</span>
+                </div>
+                <div class="report-row-column" id="report-row-skip-reason" style="display: none;">
+                    <span class="report-label">Причина пропуска:</span>
+                    <div id="report-skip-reason" class="report-value" style="color: #f59e0b; font-size: 11px; font-weight: 600;">-</div>
+                </div>
+                <div class="report-row-column">
+                    <span class="report-label">Ошибки:</span>
+                    <div id="report-errors" class="report-errors-container">-</div>
+                </div>
+            </div>
+            <button type="button" id="btn-close-report" class="stop-btn" style="margin-top: 10px; width: 100%; border-radius: 12px; padding: 10px 0; font-size: 13px; font-weight: bold; background: var(--pink-light); color: var(--pink-dark); border: 1.5px solid rgba(255, 45, 85, 0.25);">ПОНЯТНО</button>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal Overlay -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="modal-card report-card">
+            <div class="modal-header">
+                <span class="modal-title">⚠️ ПОДТВЕРЖДЕНИЕ</span>
+            </div>
+            <div class="report-content" style="text-align: center; font-size: 13px; font-weight: bold; color: var(--pink-dark); margin: 10px 0;">
+                <div id="confirm-text">-</div>
+            </div>
+            <div style="display: flex; gap: 10px; width: 100%;">
+                <button type="button" id="btn-confirm-no" class="stop-btn" style="flex: 1; border-radius: 12px; padding: 10px 0; font-size: 12px; font-weight: bold; background: rgba(255,255,255,0.05); color: #ffffff; border: 1px solid rgba(255,255,255,0.1);">ОТМЕНА</button>
+                <button type="button" id="btn-confirm-yes" class="stop-btn" style="flex: 1; border-radius: 12px; padding: 10px 0; font-size: 12px; font-weight: bold; background: var(--pink-light); color: var(--pink-dark); border: 1.5px solid rgba(255, 45, 85, 0.25);">ЗАПУСТИТЬ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal Overlay -->
+    <div id="chat-modal" class="modal-overlay hidden">
+        <div class="modal-card chat-card" style="max-height: 85vh; height: 600px; max-width: 450px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="modal-header" style="border-bottom: 1px solid rgba(255, 133, 162, 0.15); padding-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="catgirl_avatar.png" style="width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--pink-accent); background: #151517;" alt="Mascot">
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="font-size: 13px; font-weight: bold; color: #ffffff;">Plitty</span>
+                        <span style="font-size: 10px; color: #30d158; display: flex; align-items: center; gap: 4px;">
+                            <span style="width: 6px; height: 6px; background-color: #30d158; border-radius: 50%; display: inline-block; animation: blink-soft 1.5s infinite;"></span>
+                            В сети
+                        </span>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <button type="button" id="btn-toggle-voice" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ffffff; font-size: 11px; padding: 4px 8px; cursor: pointer; transition: all 0.2s;">🔇 Озвучка ВЫКЛ</button>
+                    <button type="button" id="btn-close-chat" class="btn-close" style="font-size: 20px;">&times;</button>
+                </div>
+            </div>
+            
+            <div id="chat-messages" style="flex: 1; overflow-y: auto; padding: 10px 0; display: flex; flex-direction: column; gap: 10px;">
+            </div>
+            
+            <div style="display: flex; gap: 6px; border-top: 1px solid rgba(255, 133, 162, 0.15); padding-top: 10px; margin-top: auto; align-items: center; width: 100%; box-sizing: border-box;">
+                <button type="button" id="btn-mic-chat" style="flex-shrink: 0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; width: 36px; height: 36px; cursor: pointer; display: flex; justify-content: center; align-items: center; padding: 0; transition: background 0.2s;" onmouseover="this.style.background='rgba(255, 255, 255, 0.1)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C9.79086 2 8 3.79086 8 6V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V6C16 3.79086 14.2091 2 12 2Z" fill="#8e8e93" id="mic-icon-path"/>
+                        <path d="M19 11C19 10.4477 18.5523 10 18 10C17.4477 10 17 10.4477 7 11C7 10.4477 6.55228 10 6 10C5.44772 10 5 10.4477 5 11C5 14.4716 7.55018 17.3482 10.9 17.9158L10.9 20C10.9 20.5523 11.3477 21 11.9 21C12.4523 21 12.9 20.5523 12.9 20L12.9 17.9158C16.2498 17.3482 18.9 14.4716 19 11Z" fill="#8e8e93"/>
+                    </svg>
+                </button>
+                <button type="button" id="btn-beer-chat" style="flex-shrink: 0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; width: 36px; height: 36px; cursor: pointer; display: flex; justify-content: center; align-items: center; padding: 0; font-size: 16px; transition: background 0.2s;" title="Угостить пивом" onmouseover="this.style.background='rgba(255, 255, 255, 0.1)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'">🍺</button>
+                <input type="text" id="chat-input" placeholder="Напиши или микрофон..." style="flex: 1; min-width: 0; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #ffffff; padding: 8px 10px; font-size: 12px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--pink-accent)'" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'">
+                <button type="button" id="btn-send-chat" style="flex-shrink: 0; background: var(--pink-light); border: 1.5px solid rgba(255, 45, 85, 0.25); color: var(--pink-dark); font-size: 11px; font-weight: bold; border-radius: 12px; height: 36px; padding: 0 10px; cursor: pointer; white-space: nowrap; transition: background 0.2s;" onmouseover="this.style.background='rgba(255, 45, 85, 0.15)'" onmouseout="this.style.background='var(--pink-light)'">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <button type="button" id="btn-open-chat" style="position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: var(--pink-accent); border: none; box-shadow: 0 4px 16px rgba(255, 45, 85, 0.35); cursor: pointer; z-index: 9998; display: flex; justify-content: center; align-items: center; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 6px 20px rgba(255, 45, 85, 0.45)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(255, 45, 85, 0.35)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.47715 2 2 6.02944 2 11C2 13.5606 3.19734 15.8646 5.15082 17.5147C4.68536 19.3496 3.49842 20.8967 3.40798 21.0118C3.16738 21.3175 3.19018 21.7584 3.46083 22.0381C3.73148 22.3178 4.16487 22.3486 4.47167 22.1098C4.59302 22.0155 6.1368 20.8354 7.82424 19.7828C9.13524 20.5752 10.5317 21 12 21C17.5228 21 22 16.9706 22 12C22 7.02944 17.5228 2 12 2ZM12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C10.6698 20 9.42171 19.6738 8.32832 19.1026C8.08331 18.9746 7.78912 18.9715 7.54131 19.0945C6.48624 19.6179 5.37894 20.1774 4.47466 20.6133C4.85042 19.5393 5.37256 18.3079 5.68652 17.5342C5.78768 17.285 5.76012 17.0004 5.6111 16.7725C3.99342 14.3045 3.9996 11.2338 5.62688 8.78401C6.27334 7.81056 7.12644 6.9575 8.1275 6.27402C9.2882 5.48154 10.6124 4 12 4Z" fill="#ffffff"/>
+        </svg>
+    </button>
+
+    <!-- JS App Logic -->
+    <script src="app.js?v=20260901_final"></script>
+</body>
+</html>
