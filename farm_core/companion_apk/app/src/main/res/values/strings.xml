@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">A11Y Companion</string>
+    <string name="service_label">A11Y Companion (PF)</string>
+    <string name="service_description">Локальный accessibility-мост (PF). Слушает 127.0.0.1:7070. Данные наружу не отправляет.</string>
+</resources>
