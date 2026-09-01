@@ -259,31 +259,39 @@ def generate_image(prompt, width=None, height=None, model=None, style_preset=Non
     except Exception:
         pass
 
-    # 2. Быстрый защищенный шлюз с негативным щитом
-    encoded_prompt = urllib.parse.quote(master_prompt)
-    encoded_neg = urllib.parse.quote(UNIVERSAL_NEGATIVE_PROMPT)
-    image_api_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width={target_width}&height={target_height}&model={target_model}&seed={seed}&nologo=true&negative={encoded_neg}"
-
+    # 2. Многоуровневый отказоустойчивый шлюз генерации (Anti-429 Shield)
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         "Accept": "image/*",
         "Referer": "https://pollinations.ai/"
     }
 
-    try:
-        req = urllib.request.Request(image_api_url, headers=headers)
-        with urllib.request.urlopen(req, timeout=35) as response:
-            image_bytes = response.read()
+    candidate_urls = [
+        f"https://image.pollinations.ai/prompt/{urllib.parse.quote(master_prompt)}?width={target_width}&height={target_height}&model=flux&seed={seed}&nologo=true",
+        f"https://image.pollinations.ai/prompt/{urllib.parse.quote(master_prompt)}?width={target_width}&height={target_height}&model=turbo&seed={seed}&nologo=true",
+        f"https://image.pollinations.ai/prompt/{urllib.parse.quote(master_prompt)}?width=768&height=1024&seed={seed}&nologo=true",
+        f"https://image.pollinations.ai/prompt/{urllib.parse.quote('masterpiece, 2d anime catgirl plitty, ' + prompt)}?seed={seed}&nologo=true"
+    ]
 
-        if len(image_bytes) < 3000:
-            raise Exception("Малый размер ответа от шлюза")
+    image_bytes = None
+    used_model = "flux"
+    for idx, cand_url in enumerate(candidate_urls):
+        try:
+            req = urllib.request.Request(cand_url, headers=headers)
+            with urllib.request.urlopen(req, timeout=25) as response:
+                img_data = response.read()
+                if len(img_data) > 3000:
+                    image_bytes = img_data
+                    used_model = f"flux_engine_{idx+1}"
+                    break
+        except Exception:
+            time.sleep(0.5)
 
+    if image_bytes:
         with open(file_path, "wb") as f:
             f.write(image_bytes)
-
         web_url = f"/generated/{filename}"
         print(f"[Art Engine 4.5] 🏆 Шедевр сохранен локально: {filename} ({len(image_bytes)} байт)")
-        
         return {
             "success": True,
             "file_path": file_path,
@@ -292,37 +300,16 @@ def generate_image(prompt, width=None, height=None, model=None, style_preset=Non
             "prompt": prompt,
             "enhanced_prompt": master_prompt,
             "style_used": style_key,
-            "model_used": target_model,
+            "model_used": used_model,
             "dimensions": f"{target_width}x{target_height}",
             "seed": seed
         }
-    except Exception as e:
-        print(f"[Art Gen Error] {e}. Фоллбэк...")
-        try:
-            fb_prompt = f"masterpiece, 2d anime illustration, {prompt}, Kyoto Animation style, clean lineart, 8k"
-            fb_url = f"https://image.pollinations.ai/prompt/{urllib.parse.quote(fb_prompt)}?seed={seed}&nologo=1"
-            req2 = urllib.request.Request(fb_url, headers=headers)
-            with urllib.request.urlopen(req2, timeout=30) as response2:
-                image_bytes = response2.read()
-            with open(file_path, "wb") as f:
-                f.write(image_bytes)
-            return {
-                "success": True,
-                "file_path": file_path,
-                "filename": filename,
-                "web_url": f"/generated/{filename}",
-                "prompt": prompt,
-                "enhanced_prompt": fb_prompt,
-                "style_used": "fallback",
-                "model_used": "flux-anime",
-                "dimensions": f"{target_width}x{target_height}",
-                "seed": seed
-            }
-        except Exception as e2:
-            return {
-                "success": False,
-                "error": f"Ошибка генерации: {e2}",
-                "file_path": None,
-                "web_url": None,
-                "prompt": prompt
-            }
+    else:
+        return {
+            "success": False,
+            "error": "Шлюз нейросети сейчас перегружен. Повтори запрос через 5 секунд!",
+            "file_path": None,
+            "filename": None,
+            "web_url": None
+        }
+
