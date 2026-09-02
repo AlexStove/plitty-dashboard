@@ -1527,3 +1527,54 @@ textarea:focus {
     box-shadow: 0 4px 14px rgba(220, 38, 38, 0.45) !important;
     transform: translateY(-1px);
 }
+
+
+/* Check Devices Button Pro Styles */
+.btn-check-devices {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: rgba(255, 45, 85, 0.12) !important;
+    color: #ff2d55 !important;
+    border: 1.5px solid rgba(255, 45, 85, 0.28) !important;
+    border-radius: 10px !important;
+    padding: 7px 14px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    user-select: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 6px rgba(255, 45, 85, 0.15) !important;
+    z-index: 10 !important;
+}
+
+.btn-check-devices:active, .btn-check-devices:hover {
+    background: rgba(255, 45, 85, 0.22) !important;
+    border-color: #ff2d55 !important;
+    transform: scale(0.97) !important;
+}
+
+.btn-check-devices.checking {
+    background: rgba(48, 209, 88, 0.15) !important;
+    border-color: #30d158 !important;
+    color: #30d158 !important;
+}
+
+.btn-check-devices .check-icon.spin {
+    display: inline-block !important;
+    animation: rotate-check-icon 0.8s linear infinite !important;
+}
+
+@keyframes rotate-check-icon {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Awake device highlight */
+.device-item.dev-awake {
+    border-color: rgba(48, 209, 88, 0.5) !important;
+    background: rgba(48, 209, 88, 0.08) !important;
+}

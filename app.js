@@ -395,17 +395,39 @@ btnConfirmNoEl.addEventListener("click", () => {
     showBubble("Запуск отменен, аки спасены. 🙌");
 });
 
-// Check Devices status button helper
+// Check Devices status button helper (Responsive & Instant Feedback)
 const btnCheckDevicesEl = document.getElementById("btn-check-devices");
 if (btnCheckDevicesEl) {
-    btnCheckDevicesEl.addEventListener("click", () => {
-        showBubble("Проверяем статус 31 смартфона... 📱");
+    const triggerDeviceCheck = (e) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        btnCheckDevicesEl.classList.add("checking");
+        btnCheckDevicesEl.innerHTML = '<span class="check-icon spin">🔄</span> <span class="check-text">Опрашиваем ферму...</span>';
+        btnCheckDevicesEl.disabled = true;
+        
+        showBubble("Опрашиваю телефоны через ADB... 📱⚡");
+        
+        // Отправляем сигнал принудительного опроса
+        database.ref("system/force_device_check").set(Date.now());
         database.ref("chat/request").set({
             text: "статус",
             username: "Лёша",
             timestamp: Date.now()
         });
-    });
+        
+        setTimeout(() => {
+            btnCheckDevicesEl.classList.remove("checking");
+            btnCheckDevicesEl.innerHTML = '<span class="check-icon">🔄</span> <span class="check-text">Проверить состояние</span>';
+            btnCheckDevicesEl.disabled = false;
+            showBubble("Состояние телефонов обновлено! 🟢✨");
+        }, 1800);
+    };
+    
+    btnCheckDevicesEl.addEventListener("click", triggerDeviceCheck);
+    btnCheckDevicesEl.addEventListener("touchend", triggerDeviceCheck);
 }
 
 // Copy Terminal Logs helper
@@ -574,9 +596,30 @@ database.ref("devices").on("value", (snapshot) => {
         return;
     }
     
+    // Sort devices: AWAKE (unlocked/working) FIRST, LOCKED/SLEEPING LAST
+    devKeys.sort((a, b) => {
+        const devA = devices[a] || {};
+        const devB = devices[b] || {};
+        const isUnlockedA = devA.is_unlocked !== false;
+        const isUnlockedB = devB.is_unlocked !== false;
+        
+        // 1. Бодрствующие телефоны идут первыми
+        if (isUnlockedA && !isUnlockedB) return -1;
+        if (!isUnlockedA && isUnlockedB) return 1;
+        
+        // 2. Активно работающие идут перед ожидающими
+        const stateA = devA.state || "idle";
+        const stateB = devB.state || "idle";
+        if (stateA !== "idle" && stateB === "idle") return -1;
+        if (stateA === "idle" && stateB !== "idle") return 1;
+        
+        // 3. Естественная числовая сортировка по ID
+        return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
+    });
+
     // Render devices grid
     let html = "";
-    devKeys.sort().forEach(devId => {
+    devKeys.forEach(devId => {
         const dev = devices[devId];
         const state = dev.state || "idle";
         const reps = dev.reps || 0;
