@@ -848,22 +848,11 @@ function speakText(text) {
     // voice playback disabled
 }
 
-// Initial Welcome message based on username presence
+// Initial Welcome message - Clean Empty Window (User initiates dialog)
 function renderWelcomeMessage() {
     chatMessagesEl.innerHTML = "";
     if (currentUsername) {
         database.ref("chat/username").set(currentUsername);
-        appendChatMessage("bot", 
-            `Опять ты, <b>${currentUsername}</b>? Я тут пиво открыть пыталась, а ты лезешь со своими командами... 🚬<br><br>` +
-            `Че надо? Напиши <b>помощь</b>, если забыл команды, мне лень по сто раз объяснять.`,
-            false
-        );
-    } else {
-        appendChatMessage("bot", 
-            `Че надо? 😾 Кто вообще разрешил меня будить? Я спать хочу, отвали...<br><br>` +
-            `Слышь, ты кто вообще? Как звать-то тебя? Представься нормально, напиши:<br><b>Я [твое имя]</b>`,
-            false
-        );
     }
 }
 
@@ -897,7 +886,7 @@ function loadChatHistory() {
         });
         chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
     } else {
-        renderWelcomeMessage();
+        chatMessagesEl.innerHTML = "";
     }
 }
 
