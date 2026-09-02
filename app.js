@@ -156,6 +156,8 @@ function showBubble(text, duration = 4000) {
 
 // Set up Mascot Loop based on app status (always stationary in header next to logo)
 function updateMascotLoop() {
+    return;
+
     clearInterval(mascotMoveInterval);
     
     if (activeState === "night_boost") {
