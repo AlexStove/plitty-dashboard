@@ -1,2 +1,2 @@
-# plitty-dashboard
-Plitty Dashboard TikTok Farm
+# Plitty Dashboard UI
+Static Web Interface for Plitty Remote Control.
